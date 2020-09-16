@@ -1,4 +1,5 @@
 import express from 'express';
+import cors from 'cors';
 
 import { connectDB } from './app/config/database';
 import { environment } from './environment/environment';
@@ -9,6 +10,7 @@ const port = environment.runConfigurations.port;
 
 
 connectDB();
+app.use(cors())
 app.use(express.json());
 
 app.use('/tasks', require('./app/routes/task.route'));

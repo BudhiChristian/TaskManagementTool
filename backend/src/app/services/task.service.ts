@@ -2,6 +2,11 @@ import { Task } from "../models/mongo/task.model";
 import { ServiceResponse } from "../models/service-response.model";
 
 export class TaskService {
+    
+    static async getFiltered(filter): Promise<ServiceResponse> {
+        return new ServiceResponse(500, {message: "Not Impletmented."});
+    }
+
     static async getAll(): Promise<ServiceResponse> {
         try {
             let items = await Task.find();
@@ -20,7 +25,7 @@ export class TaskService {
             if (invalidParts) {
                 // Aggregate invalid details
                 let response = {
-                    message: "invalid request",
+                    message: "Invalid Request",
                     errors: []
                 }
                 for (const key in invalidParts.errors) {
