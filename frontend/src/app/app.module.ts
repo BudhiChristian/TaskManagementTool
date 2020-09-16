@@ -7,6 +7,14 @@ import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 import { TaskComponent } from './components/task/task.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatButtonModule, MatIconModule, MatToolbarModule } from '@angular/material';
+
+const materialImports = [
+  MatToolbarModule,
+  MatButtonModule,
+  MatIconModule
+]
 
 @NgModule({
   declarations: [
@@ -17,7 +25,9 @@ import { TaskComponent } from './components/task/task.component';
     BrowserModule,
     FormsModule,
     CommonModule,
-    HttpClientModule
+    HttpClientModule,
+    BrowserAnimationsModule,
+    ...materialImports
   ],
   providers: [
     TaskManagmentService

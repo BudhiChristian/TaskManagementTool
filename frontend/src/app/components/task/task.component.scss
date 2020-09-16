@@ -1,0 +1,23 @@
+.task-container {
+    border: 1px solid #aaa;
+    border-radius: 0.3rem;
+    padding: 0.2rem;
+    background-color: white;
+    margin-bottom: 1rem;
+}
+
+.header-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+h1 {
+    margin: 0rem;
+    font-size: 1.5rem;
+}
+
+p {
+    margin: 0.5rem 0 0;
+    font-size: 1rem;
+}

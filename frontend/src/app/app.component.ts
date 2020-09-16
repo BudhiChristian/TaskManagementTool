@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Task } from './models/task.model';
 import { TaskManagmentService } from './services/task-managment.service';
 
 @Component({
@@ -7,7 +8,8 @@ import { TaskManagmentService } from './services/task-managment.service';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  public tasks: any;
+  public tasks: Task[];
+  public showLoader: boolean = false;
 
   constructor(
     private taskManagmentService: TaskManagmentService
@@ -20,7 +22,7 @@ export class AppComponent {
   }
 
   fetchData() {
-    this.taskManagmentService.getTasks().subscribe((res: any) => {
+    this.taskManagmentService.getTasks().subscribe((res: Task[]) => {
       this.tasks = res;
     })
   }
