@@ -5,7 +5,8 @@
   "private": true,
   "scripts": {
     "test": "jest --runInBand",
-    "start": "tsc && node dist/index.js"
+    "start-server": "tsc && node dist/index.js",
+    "start": "npm test && npm run-script start-server"
   },
   "author": "",
   "license": "ISC",
