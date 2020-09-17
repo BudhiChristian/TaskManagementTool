@@ -17,4 +17,12 @@ export class TaskManagmentService {
     return this.http.get<Task[]>(this.api)
   }
 
+  createTask(request) {
+    return this.http.post<Task>(this.api, request)
+  }
+
+  deleteTask(id) {
+    return this.http.delete<Task>(`${this.api}/${id}`)
+  }
+
 }

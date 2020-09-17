@@ -1,12 +1,15 @@
 <mat-toolbar color='primary' class='application-header'>
   <span>Task Management Tool</span>
   <span style='flex: 1 1 auto'></span>
-  <button mat-raised-button title="Create">New Task</button>
+  <button mat-raised-button title="Create" (click)='createTask()'>New Task</button>
 </mat-toolbar>
 <div class="application-container">
   <div class="task-container">
     <ng-container *ngIf="tasks?.length; else noTasks">
-      <app-task *ngFor='let task of tasks' [task]='task'></app-task>
+      <div class="list-label">Incomplete Tasks</div>
+      <app-task *ngFor='let task of incompletedTasks' [task]='task' (onRemove)='deleteTask($event)'></app-task>
+      <div class="list-label">Complete Tasks</div>
+      <app-task *ngFor='let task of completedTasks' [task]='task' (onRemove)='deleteTask($event)'></app-task>
     </ng-container>
     <ng-template #noTasks>
       <p>No Tasks</p>

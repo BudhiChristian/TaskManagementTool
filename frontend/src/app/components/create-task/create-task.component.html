@@ -1,0 +1,16 @@
+<h1 mat-dialog-title>Create New Task</h1>
+<div mat-dialog-content>
+    <label>Title</label>
+    <input [(ngModel)]='title'>
+    <br>
+    <label>Due Date</label>
+    <input type="datetime-local" [(ngModel)]='dueDate'>
+    <br>
+    <label>Description</label>
+    <textarea [(ngModel)]='description'></textarea>
+</div>
+<div mat-dialog-actions>
+  <!-- <button mat-button (click)="onNoClick()">No Thanks</button> -->
+  <button mat-button mat-dialog-close>Cancel</button>
+  <button mat-button (click)='create()'>Create</button>
+</div>

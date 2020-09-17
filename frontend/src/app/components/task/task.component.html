@@ -2,15 +2,19 @@
     <div class= 'header-container'>
         <div>
             <h1>{{task.title | titlecase}}</h1>
-            <span>Due: {{task.dueDate | date}}</span>
+            <span>Due: {{task.dueDate | date : 'short'}}</span>
         </div>
+        <mat-chip-list>
+            <mat-chip color='accent' *ngIf="isDueSoon" selected>Due Soon</mat-chip>
+            <mat-chip color='warn' *ngIf="isLate" selected>Late</mat-chip>
+        </mat-chip-list>
         <div>
-            <button mat-icon-button>
+            <button mat-icon-button [title]="task.complete ? 'complete' : 'undo'">
                 <mat-icon *ngIf="!task.complete">assignment</mat-icon>
                 <mat-icon *ngIf="task.complete">assignment_turned_in</mat-icon>
             </button>
-            <button mat-icon-button><mat-icon>delete_forever</mat-icon></button>
-            <button mat-icon-button><mat-icon>edit</mat-icon></button>
+            <button mat-icon-button (click)='remove()'><mat-icon>delete_forever</mat-icon></button>
+            <!-- <button mat-icon-button><mat-icon>edit</mat-icon></button> -->
         </div>
     </div>
     <p>{{task.description}}</p>
