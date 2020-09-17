@@ -7,10 +7,11 @@ import { CreateTaskComponent } from './create-task.component';
 describe('CreateTaskComponent', () => {
   let component: CreateTaskComponent;
   let fixture: ComponentFixture<CreateTaskComponent>;
-  const mockDialogRef = {
-    close: jasmine.createSpy('close')
-  }
+  let mockDialogRef;
   beforeEach(async(() => {
+    mockDialogRef = {
+      close: jasmine.createSpy('close')
+    }
     TestBed.configureTestingModule({
       declarations: [ CreateTaskComponent ],
       providers: [
@@ -45,7 +46,6 @@ describe('CreateTaskComponent', () => {
   })
 
   it('should close on successful create', () => {
-    // spyOn(mockDialogRef, "close")
     const newTask = {
       title: "test",
       description: "description",
