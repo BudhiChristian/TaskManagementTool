@@ -7,7 +7,6 @@ import { MatDialogRef } from '@angular/material';
   styleUrls: ['./create-task.component.scss']
 })
 export class CreateTaskComponent implements OnInit {
-
   title: string;
   dueDate: string;
   description: string
@@ -19,7 +18,7 @@ export class CreateTaskComponent implements OnInit {
   }
 
   create() {
-    if(!this.title || !this.dueDate || !this.description) {
+    if (!this.title || !this.dueDate || !this.description) {
       alert('all fields are manditory!')
       return
     }

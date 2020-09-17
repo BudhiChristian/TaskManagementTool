@@ -2,10 +2,6 @@ import { Task } from "../models/mongo/task.model";
 import { ServiceResponse } from "../models/service-response.model";
 
 export class TaskService {
-    
-    static async getFiltered(filter): Promise<ServiceResponse> {
-        return new ServiceResponse(500, {message: "Not Impletmented."});
-    }
 
     static async getAll(): Promise<ServiceResponse> {
         try {

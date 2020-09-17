@@ -6,10 +6,11 @@
         </div>
         <mat-chip-list>
             <mat-chip color='accent' *ngIf="isDueSoon" selected>Due Soon</mat-chip>
-            <mat-chip color='warn' *ngIf="isLate" selected>Late</mat-chip>
+            <mat-chip color='warn' *ngIf="isOverDue" selected>Over Due</mat-chip>
         </mat-chip-list>
         <div>
-            <button mat-icon-button [title]="task.complete ? 'complete' : 'undo'">
+            <button mat-icon-button [title]="task.complete ? 'undo' : 'complete'"
+                (click)="toggleComplete()">
                 <mat-icon *ngIf="!task.complete">assignment</mat-icon>
                 <mat-icon *ngIf="task.complete">assignment_turned_in</mat-icon>
             </button>

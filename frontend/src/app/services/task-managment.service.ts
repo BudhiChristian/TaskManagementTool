@@ -25,4 +25,8 @@ export class TaskManagmentService {
     return this.http.delete<Task>(`${this.api}/${id}`)
   }
 
+  updateTask(id, request) {
+    return this.http.put<Task>(`${this.api}/${id}`, request)
+  }
+
 }

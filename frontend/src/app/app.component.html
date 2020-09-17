@@ -1,15 +1,42 @@
 <mat-toolbar color='primary' class='application-header'>
   <span>Task Management Tool</span>
   <span style='flex: 1 1 auto'></span>
-  <button mat-raised-button title="Create" (click)='createTask()'>New Task</button>
+
+  <button mat-icon-button title="Filter" [mat-menu-trigger-for]="filterMenu">
+    <mat-icon>filter_alt</mat-icon>
+  </button>
+  <mat-menu #filterMenu='matMenu'>
+    <button mat-menu-item *ngFor="let option of filters" (click)="this.filter = option">
+      <span [class.selected-filter]='this.filter === option'>{{option}}</span>
+    </button>
+  </mat-menu>
+  <button mat-icon-button title="Create" (click)='createTask()'>
+    <mat-icon>add_task</mat-icon>
+  </button>
 </mat-toolbar>
 <div class="application-container">
   <div class="task-container">
     <ng-container *ngIf="tasks?.length; else noTasks">
       <div class="list-label">Incomplete Tasks</div>
-      <app-task *ngFor='let task of incompletedTasks' [task]='task' (onRemove)='deleteTask($event)'></app-task>
+      <ng-container *ngIf='incompletedTasks.length; else noIncomplete'>
+        <app-task *ngFor='let task of incompletedTasks' [task]='task' (onRemove)='deleteTask($event)'
+          (onUpdate)='updateTask($event)'></app-task>
+      </ng-container>
+      <ng-template #noIncomplete>
+        <p>
+          No Incomplete Tasks To Display
+        </p>
+      </ng-template>
       <div class="list-label">Complete Tasks</div>
-      <app-task *ngFor='let task of completedTasks' [task]='task' (onRemove)='deleteTask($event)'></app-task>
+      <ng-container *ngIf="completedTasks.length; else noComplete">
+        <app-task *ngFor='let task of completedTasks' [task]='task' (onRemove)='deleteTask($event)'
+          (onUpdate)='updateTask($event)'></app-task>
+      </ng-container>
+      <ng-template #noComplete>
+        <p>
+          No Complete Tasks To Display
+        </p>
+      </ng-template>
     </ng-container>
     <ng-template #noTasks>
       <p>No Tasks</p>

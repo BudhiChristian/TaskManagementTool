@@ -9,6 +9,7 @@ import { Task } from 'src/app/models/task.model';
 export class TaskComponent implements OnInit {
   @Input() task: Task;
   @Output() onRemove: EventEmitter<string> = new EventEmitter<string>();
+  @Output() onUpdate: EventEmitter<Task> = new EventEmitter<Task>();
 
   constructor(
   ) { }
@@ -20,6 +21,11 @@ export class TaskComponent implements OnInit {
     this.onRemove.emit(this.task._id)
   }
 
+  toggleComplete() {
+    this.task.complete = !this.task.complete;
+    this.onUpdate.emit(this.task);
+  }
+
   get isDueSoon() {
     let due = new Date(this.task.dueDate)
     let today = new Date()
@@ -28,7 +34,7 @@ export class TaskComponent implements OnInit {
     return !this.task.complete && due >= today && due <= twoDays
   }
 
-  get isLate() {
+  get isOverDue() {
     let due = new Date(this.task.dueDate)
     let today = new Date()
     return !this.task.complete && due < today
